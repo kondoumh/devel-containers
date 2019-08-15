@@ -1,0 +1,8 @@
+version: "3"
+services:
+  puppeteer:
+    container_name: sb-sample
+    build: .
+    shm_size: 1G
+    volumes:
+      - ${SCRIPT_DIR}:/app
