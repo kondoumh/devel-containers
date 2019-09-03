@@ -3,6 +3,18 @@
 docker build -t hugo-builder .
 
 git clone https://github.com/kondoumh/kondoumh.com.git
-cd kondoumh.com
+pushd kondoumh.com
 git submodule update -i
-docker run --rm -it -v ${PWD}/kondoumh.com:/src -u hugo hugo-builder hugo
+popd
+if [ -e public  ]; then
+  sudo rm -rf public
+fi
+mkdir public
+docker run --rm -it \
+	-v ${PWD}/kondoumh.com:/src:rw \
+	-v ${PWD}/public:/public:rw \
+	-e HUGO_ENV=production \
+	hugo-builder \
+	hugo \
+	  --destination /public
+sudo rm -rf ${PWD}/kondoumh.com
