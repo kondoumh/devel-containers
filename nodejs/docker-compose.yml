@@ -1,7 +1,0 @@
-services:
-  build: .
-  container_name: node-docker
-  ports:
-    - 8080:3000
-  volumes:
-    - ./:/home/app
