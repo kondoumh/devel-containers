@@ -10,8 +10,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: elgohr/Publish-Docker-Github-Action@master
+    
     - name: Build and push the Docker image
+      uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: docker.pkg.github.com/kondoumh/devel-containers/gitpod
         username: kondoumh
