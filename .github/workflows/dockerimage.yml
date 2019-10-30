@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: elgohr/Publish-Docker-Github-Action@master
+    - name: Build and push the Docker image
+      with:
+        name: docker.pkg.github.com/kondoumh/devel-containers/gitpod
+        username: kondoumh
+        password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
+        registry: docker.pkg.github.com
+        workdir: gitpod
+        dockerfile: Dockerfile
